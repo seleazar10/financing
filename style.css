@@ -1,0 +1,111 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.clearfix::after{
+    content: " ";
+    clear: both;
+    display: table;
+
+}
+
+.whiteFont{
+    color: white;
+}
+
+/* .container{
+    position: absolute;
+} */
+.firstsec{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.658)), url("/calculator.jpeg");
+    background-position: center;
+    background-size: cover;
+    height: 30vh;
+    /* position: relative; */
+   
+
+}
+
+/* .txtCtr{
+    text-align: center;
+    
+} */
+
+
+
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    text-align: center;
+  }
+
+.incomeDisplayBox{
+    background-color: #8b93ff;
+    padding: 10px;
+    margin: 10px;
+      
+}
+
+.expensesDisplayBox{
+    background-color: #ff8b8b;
+    padding: 10px;
+    margin: 10px;
+    
+
+}
+
+.incomeWord,
+.expensesWord{
+    /* display: inline-block; */
+    float: left;
+    
+}
+
+
+.incomePercentage,
+.expensesPercentage{
+
+    /* display: inline-block; */
+    float: right;
+}
+
+.incomeNumber,
+.expensesNumber
+{
+    /* display: inline-block; */
+    float: right;
+}
+
+
+.secSec{
+     /* position: relative; */
+     /* display: block; */
+     margin-top: 20px ;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2}
+  
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .incomeTable{
+    width: 40%;
+    padding: 10px;
+}
+
+
