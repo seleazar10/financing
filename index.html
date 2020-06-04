@@ -16,97 +16,152 @@
 
 
 
-    <div class="container">
-
-        <div class="firstSec clearfix">
 
 
-            <div class="center">
+    <div class="firstSec clearfix">
 
-                <div class="textbox whiteFont">
+        <div class="top_container clearfix">
 
-                    <h1>Welcome To FinEx Budgeting</h1>
-                    <h3>Available Budget for</h3><span> ...Date..</span>
+            <div class="textbox">
 
-                </div>
+                <h1>Welcome To FinEx Budgeting</h1>
+                <h3>Available Budget for <span class="budget__title--month"> ...Date..</span></h3>
 
+            </div>
 
+            <div class="netDisplay center whiteFont">
+                <p class="netMoney"> ----Net money display-- </p>
 
-                <div class="netDisplay whiteFont">
-                    <p class="netMoney"> ----Net money display-- </p>
-
-                </div>
-
-                <div class="incomeExpensedisplayBox ">
+            </div>
 
 
 
+            <div class="incomeExpensedisplayBox ">
 
-                    <div class="incomeDisplayBox clearfix">
-                        <p class="incomeWord">Income</p>
-                        <p class="incomePercentage whiteFont">--Per--</p>
-                        <p class="incomeNumber whiteFont">+ --Numb--====</p>
+                <div class="incomeDisplayBox clearfix">
+                    <p class="incomeWord">Income</p>
 
-
-                    </div>
-
-                    <div class="expensesDisplayBox clearfix">
-                        <p class="expensesWord">Expenses</p>
-                        <p class="expensesPercentage whiteFont">--Per--</p>
-                        <p class="expensesNumber whiteFont">- --Numb--</p>
-
+                    <div class="righto">
+                        <p class="incomePercentage right whiteFont">--Per--</p>
+                        <p class="incomeNumber right whiteFont">+ --Numb--====</p>
                     </div>
 
                 </div>
 
+                <div class="expensesDisplayBox clearfix">
+                    <p class="expensesWord">Expenses</p>
 
-            </div>
-
-            <div class="secSec clearfix">
-
-                <div class="center">
-
-                    <form>
-
-                        <select class="add__type">
-                            <option value="inc" selected>+</option>
-                            <option value="exp">-</option>
-                        </select>
-
-                        <input type="text" id="fname" name="fname" placeholder="Add description">
-
-                        <input type="text" id="lname" name="lname" placeholder="Value">
-                        <i class="fas fa-check"></i>
-
-
-                    </form>
-
+                    <div class="right">
+                        <p class="expensesPercentage right whiteFont">--Per--</p>
+                        <p class="expensesNumber right whiteFont">- --Numb--</p>
+                    </div>
                 </div>
 
             </div>
 
-            <div class="thirdSec">
+        </div>
+    </div>
 
-                <div class="incomeTable">
+    <div class="secSec clearfix">
 
-                    <table class="tblOne">
-                        <tr>
-                            <th>Income</th>
-                            <th>-</th>
-                        </tr>
-                        <tr>
-                            <td>Placeholder</td>
-                            <td> +0000 </td>
-                        </tr>
-                    </table>
+        <div class="center">
 
-                </div>
-            </div>
+            <form>
+
+                <select class="add__type">
+                    <option value="inc" selected>+</option>
+                    <option value="exp">-</option>
+                </select>
+
+                <input type="text" id="fname" name="fname" placeholder="Add description">
+
+                <input type="text" id="lname" name="lname" placeholder="Value">
+
+                <button class="add_btn"> <i class="fas fa-check"></i> </button>
+
+
+            </form>
 
         </div>
 
     </div>
 
+    <div class="thirdSec container clearfix">
+
+        <!-- INcome table -->
+
+        <div class="income_table">
+
+            <div class="incometable_header">
+
+                <h2 class="incometable_title">Income</h2>
+            </div>
+
+            <div class="income_list">
+
+                <div class="item clearfix" id="income-0">
+                    <div class="item__description blocko">Salary</div>
+                    <div class="right clearfix">
+                        <div class="item__value">+ 2,100.00</div>
+                        <div class="item__percentage">21%</div>
+                        <div class="item__delete">
+                            <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- Expense Table -->
+
+        <div class="expenses_table">
+
+            <div class="expensestable_header">
+
+                <h2 class="expensestable_title">Expenses</h2>
+            </div>
+
+            <div class="expenses_list">
+
+                <div class="item clearfix" id="expense-0">
+                    <div class="item__description blocko">Apartment rent</div>
+                    <div class="right clearfix">
+                        <div class="item__value">- 900.00</div>
+                        <div class="item__percentage">21%</div>
+                        <div class="item__delete">
+                            <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+    <script src="scipt.js"></script>
 
 
 </body>

@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+body {
+    color: #555;
+    font-family: Open Sans;
+    font-size: 16px;
+    position: relative;
+    height: 100vh;
+    font-weight: 400;
+}
+
+
 .clearfix::after{
     content: " ";
     clear: both;
@@ -15,30 +25,53 @@
     color: white;
 }
 
-/* .container{
-    position: absolute;
-} */
+.right{
+    float: right;
+}
+
+.left{
+    float: left;
+}
+
+
+
+/* ----------Top sec--------- */
+
 .firstsec{
     background-image: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.658)), url("/calculator.jpeg");
     background-position: center;
     background-size: cover;
-    height: 30vh;
-    /* position: relative; */
+    height: 40vh;
+    position: relative;
    
 
 }
 
-/* .txtCtr{
+.top_container{
+
+    position: absolute;    
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    color: #fff;
+
+}
+
+
+.textbox{
+    font-size: 18px;
     text-align: center;
-    
-} */
+    margin-bottom: 10px;
+    font-weight: 300;
+    /* margin-top: 220px; */
+
+}
 
 
 
 .center {
     margin: auto;
-    width: 60%;
-    padding: 10px;
     text-align: center;
   }
 
@@ -59,53 +92,53 @@
 
 .incomeWord,
 .expensesWord{
-    /* display: inline-block; */
+    display: inline-block;
     float: left;
     
 }
 
 
-.incomePercentage,
-.expensesPercentage{
 
-    /* display: inline-block; */
-    float: right;
-}
-
-.incomeNumber,
-.expensesNumber
-{
-    /* display: inline-block; */
-    float: right;
-}
+/* -------Bottom Part --------------------- */
 
 
 .secSec{
-     /* position: relative; */
-     /* display: block; */
-     margin-top: 20px ;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  th, td {
-    text-align: left;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even){background-color: #f2f2f2}
-  
-  th {
-    background-color: #4CAF50;
-    color: white;
-  }
-
-  .incomeTable{
-    width: 40%;
-    padding: 10px;
+     position: relative;
+     display: block;
+     margin: 10px auto;
+    
 }
 
 
+.thirdSec{
+    margin: 60px auto;
+    max-width: 1000px;
+}
+
+.income_table,
+.expenses_table{
+    float: left;
+    width: 450px;
+    /* background-color: red; */
+}
+
+.income_table{
+    margin-right: 60px;
+}
+
+
+.incometable_title{
+    color: teal;
+    font-size: 150%;
+}
+
+
+.expensestable_title{
+    color: red;
+    font-size: 150%;
+}
+
+.blocko{
+    display: inline-block;
+    /* float: left; */
+}
