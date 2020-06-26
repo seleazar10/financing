@@ -97,6 +97,12 @@ body {
     
 }
 
+.expensesPercentage{
+    display: inline-block;
+    background-color: #ff1818;
+    margin-left: 10px;
+}
+
 
 
 /* -------Bottom Part --------------------- */

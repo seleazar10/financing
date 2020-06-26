@@ -74,6 +74,12 @@ var budgetController = (function () {
             return newItem
         },
 
+        testing: function () {
+
+            console.log(data.allItems)
+
+        },
+
         calculateBudget: function () {
 
             //calculate total inocme and exense
@@ -99,14 +105,21 @@ var budgetController = (function () {
 
         },
 
+        
+        getBudget: function(){
 
-        testing: function () {
+            return{
+                budget: data.budget,
+                totalInc: data.totals['inc'],
+                totalExp: data.totals['exp'],
+                percentage: data.percentage,
 
-            console.log(data.allItems)
-
-            console.log(data.totals['inc'])
+            }
 
         },
+
+
+       
 
     }
 
@@ -125,7 +138,12 @@ var UIController = (function () {
         inputValue: '.add_value',
         inputAddBtn: '.add_btn',
         incomeContainer: '.income_list',
-        expenseContainer: '.expenses_list'
+        expenseContainer: '.expenses_list',
+        netMoney: '.netMoney',
+        incomeNumber: ".incomeNumber",
+        expensesNumber: ".expensesNumber",
+        expensesPercentage: ".expensesPercentage",
+
 
 
     }
@@ -168,12 +186,49 @@ var UIController = (function () {
             newHtml = html.replace('%id%', obj.id);
             newHtml = newHtml.replace('%description%', obj.description);
             newHtml = newHtml.replace('%value%', obj.value);
-            newHtml = newHtml.replace('%percentage%', obj.percentage);
+            // newHtml = newHtml.replace('%percentage%', obj.percentage);
             
 
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
 
         },
+
+
+        addBudget: function(object){
+
+
+            var budgetContainer, incToDisplay, expToDisplay, perToDisplay;
+
+            budgetContainer = DOMstrings.netMoney;
+            document.querySelector(budgetContainer).innerHTML = object.budget;
+
+            incToDisplay = DOMstrings.incomeNumber;
+            document.querySelector(incToDisplay).innerHTML = object.totalInc;
+
+            expToDisplay = DOMstrings.expensesNumber;
+            document.querySelector(expToDisplay).innerHTML = object.totalExp;
+
+            perToDisplay = DOMstrings.expensesPercentage;
+            document.querySelector(perToDisplay).innerHTML = `   ${object.percentage}%`;
+
+
+            
+        // getBudget: function(){
+
+        //     return{
+        //         budget: data.budget,
+        //         totalInc: data.totals['inc'],
+        //         totalExp: data.totals['exp'],
+        //         percentage: data.percentage,
+
+        //     }
+
+        // },
+
+
+
+        },
+
 
 
         clearFields: function () {
@@ -198,8 +253,7 @@ var UIController = (function () {
 
             fields = document.querySelector(DOMstrings.inputDescription).value = ""
             fieldsArr = document.querySelector(DOMstrings.inputValue).value = ""
-            console.log(fields)
-
+            console.log(fields);
 
 
         },
@@ -227,8 +281,8 @@ var controller = (function (budgetCtrl, UICtrl) {
 
     var setupEventListener = function () {
 
-        var DOM = UICtrl.getDOMstrings()
-        console.log(DOM)
+        var DOM = UICtrl.getDOMstrings();
+        console.log(DOM);
 
 
         //button event listener
@@ -236,16 +290,16 @@ var controller = (function (budgetCtrl, UICtrl) {
 
 
         //Enter - Key listenner
-        document.addEventListener('keypress', keyisPressed)
+        document.addEventListener('keypress', keyisPressed);
 
         function keyisPressed(event) {
             // console.log(event)  //NA
             // console.log(event.keyCode) //NA
 
             if (event.keyCode === 13 || event.which === 13) {
-                console.log('Enter is pressed')
-                event.preventDefault()
-                ctrlAddItem()
+                console.log('Enter is pressed');
+                event.preventDefault();
+                ctrlAddItem();
             } else {
                 // console.log(`this is not the "ENTER" key... this is key: ${event.keyCode}`) //NA
             }
@@ -260,16 +314,23 @@ var controller = (function (budgetCtrl, UICtrl) {
 
     var updateBudget = function () {
 
-        budgetCtrl.testing()
+        budgetCtrl.testing();
 
         //1. calaculate budget / result
 
-        budgetCtrl.calculateBudget()
+        budgetCtrl.calculateBudget();
 
 
 
         //2. return new result
+
+        var budget = budgetCtrl.getBudget();
+
+
         //3. display result on UI
+        console.log(budget);
+
+        UICtrl.addBudget(budget);        
 
     }
 
@@ -321,6 +382,13 @@ var controller = (function (budgetCtrl, UICtrl) {
     return {
         init: function () {
             console.log('app has started');
+            UICtrl.addBudget({
+                budget: 0,
+                totalInc: 0,
+                totalExp: 0,
+                percentage: 0,
+
+            });
             setupEventListener()
         }
     }
