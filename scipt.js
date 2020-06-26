@@ -20,6 +20,21 @@ var budgetController = (function () {
     }
 
 
+    var calculateTotal = function (type) {
+
+        var sum = 0;
+
+        data.allItems[type].forEach(function (cur) {
+            sum += cur.value
+
+            // console.log(sum)
+        });
+        data.totals[type] = sum;
+
+        console.log(sum)
+    }
+
+
     var data = {
         allItems: {
             exp: [],
@@ -59,10 +74,40 @@ var budgetController = (function () {
             return newItem
         },
 
+        calculateBudget: function () {
+
+            //calculate total inocme and exense
+
+            calculateTotal('inc')
+            calculateTotal('exp')
+
+            //calcuate the budget: income - expenses
+
+            var incomeTotal = data.totals['inc']
+            console.log(incomeTotal)
+
+            var expensesTotal = data.totals['exp']
+            console.log(expensesTotal)
+
+            data.budget = incomeTotal - expensesTotal
+            console.log(data.budget)
+
+            //calculate percentage
+            data.percentage = Math.round((expensesTotal / incomeTotal) * 100)
+
+            console.log(`${data.percentage} %`)
+
+        },
+
 
         testing: function () {
-            console.log(data)
-        }
+
+            console.log(data.allItems)
+
+            console.log(data.totals['inc'])
+
+        },
+
     }
 
 })();
@@ -98,7 +143,7 @@ var UIController = (function () {
                 //value of descptiption
                 description: document.querySelector(DOMstrings.inputDescription).value,
                 //value of amount
-                value: document.querySelector(DOMstrings.inputValue).value,
+                value: parseFloat(document.querySelector(DOMstrings.inputValue).value)
 
             };
 
@@ -123,6 +168,8 @@ var UIController = (function () {
             newHtml = html.replace('%id%', obj.id);
             newHtml = newHtml.replace('%description%', obj.description);
             newHtml = newHtml.replace('%value%', obj.value);
+            newHtml = newHtml.replace('%percentage%', obj.percentage);
+            
 
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
 
@@ -131,22 +178,28 @@ var UIController = (function () {
 
         clearFields: function () {
 
-            console.log( 'clear fiels')
+            console.log('clear fiels')
 
-            // var fields;
+            var fields, fieldsArr;
 
-
-            // fields = document.querySelectorAll(DOMstrings.inputDescription + '' + DOMstrings.inputValue);
-
-            // //    console.log(fields)
+            // fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + 
+            // DOMstrings.inputValue);
 
             // fieldsArr = Array.prototype.slice.call(fields);
 
-            // fieldsArr.forEach(function (current, index, array) {
+            // fieldsArr.forEach(function(current, index, array) {
 
             //     current.value = " ";
 
             // });
+
+            // fieldsArr[0].focus()
+
+
+            fields = document.querySelector(DOMstrings.inputDescription).value = ""
+            fieldsArr = document.querySelector(DOMstrings.inputValue).value = ""
+            console.log(fields)
+
 
 
         },
@@ -205,6 +258,22 @@ var controller = (function (budgetCtrl, UICtrl) {
 
     //function to execute once btn or enter key is pressed!
 
+    var updateBudget = function () {
+
+        budgetCtrl.testing()
+
+        //1. calaculate budget / result
+
+        budgetCtrl.calculateBudget()
+
+
+
+        //2. return new result
+        //3. display result on UI
+
+    }
+
+
     var ctrlAddItem = function (event) {
 
         console.log('function will be executed') //NA
@@ -213,20 +282,35 @@ var controller = (function (budgetCtrl, UICtrl) {
         //1. get value input
         var input = UICtrl.getInput()
 
-        //2. add items to the budget controller
+        console.log(input)
 
-        var itemsAddedCtrl = budgetCtrl.addItems(input.type, input.description, input.value)
+        if (input.description !== "" && input.value !== "" && !isNaN(input.value)) {
+            //2. add items to the budget controller
 
-        //3. Add item to UI
-        UICtrl.addListItem(itemsAddedCtrl, input.type)
-
-
-
-        UICtrl.clearFields();
+            var itemsAddedCtrl = budgetCtrl.addItems(input.type, input.description, input.value)
 
 
-        //4. Calcualte the budget
-        //5. Display the budget on the UI
+
+            //3. Add item to UI
+            UICtrl.addListItem(itemsAddedCtrl, input.type)
+
+
+            //4. clear input field
+
+            UICtrl.clearFields();
+
+            //5. budget update function
+
+            updateBudget()
+
+
+        } else {
+            console.log(`fill in form ${input.type}`)
+        }
+
+
+
+
 
 
     }
